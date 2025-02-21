@@ -23,7 +23,7 @@ def run_benchmarks(
         print(response.json()['choices'][0]['message']['content'][-50:])
         print(response.json()['usage'])
         usage_file = "/home/colin/vllm/scratch/kvcache_usage.csv"
-        new_usage_file = f"/home/colin/vllm/scratch/kvcache_usage_{iteration}.csv"
+        new_usage_file = f"/home/colin/vllm/scratch/question_{iteration}.csv"
         if os.path.exists(usage_file):
             shutil.copyfile(usage_file, new_usage_file)
             os.remove(usage_file)
