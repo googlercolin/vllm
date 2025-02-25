@@ -1,0 +1,520 @@
+Question: If an equimolar mixture X of two liquids, which decolorizes bromine water, is treated with platinum when heated, then an equimolar mixture Y of two other liquids is formed as a result of disproportionation, which does not decolorize bromine water. Hydrogenation of both mixture X and mixture Y in the presence of platinum under rather severe conditions gives only one substance, a certain hydrocarbon Z (mass fraction of hydrogen is 14.28%), which is a constituent of mixture Y and widely used as a solvent. Substance Z does not react further with hydrogen. There are no conjugated multiple bonds in the molecules of the compounds of mixture X.
+Indicate the total number of hydrogen atoms in two liquids of mixture X.
+A) 16
+B) 18
+C) 22
+D) 12
+
+Assistant Response:
+<think>
+Okay, let's tackle this chemistry problem. Hmm, the question is a bit complex, but I'll try to break it down step by step. 
+
+So, the problem involves mixtures X and Y, and a substance Z. I'll go through the information given and try to make sense of each part.
+
+First, mixture X is an equimolar mixture of two liquids that decolorizes bromine water. Hmm, what liquids decolorize bromine water? That usually means they have double bonds because alkenes react with Br2. So X contains two substances, each with double bonds, maybe alkenes.
+
+Next, when X is treated with platinum and heated, it undergoes a disproportionation reaction to form mixture Y, which doesn't decolorize bromine water. Wait, Y's mixture doesn't decolorize Br2, which suggests they don't have double bonds anymore. So maybe the double bonds have been hydrogenated. But wait, X and Y are from a disproportionation reaction and X leads to Y. Oh, wait the reaction is with Pt when heated—that’s usually a catalyst for hydrogenation, right? But wait, hydrogenation would add H2 across the double bond, converting alkenes into alkanes. But X had components that could have double bonds, and Y doesn't. But the question says Y comes from the disproportionation of X. Hmm, wait, perhaps the original X had some functional groups that when hydrogenated and underwent a reaction resulted in breaking into different products.
+
+Wait, no, the problem says "disproportionation." Disproportionation is a reaction where an element or a compound is both oxidized and reduced. So if X is a mixture, maybe each component undergoes such a reaction. Alternatively, perhaps one component undergoes a reaction that splits into two, but I'm not quite sure yet.
+
+When X is hydrogenated with Pt under severe conditions, it gives only one substance, Z, which is an alkane because Z doesn't react further with H2—that suggests it's fully saturated.
+
+Also, Z is a constituent of Y, which implies that Y doesn't have any double bonds because Z is an alkane. Furthermore, Z is widely used as a solvent, which makes me think maybe it's something like hexane or toluene, but wait, it's an alkane because of the hydrogenation. Wait, wait, but wait, toluene is a solvent but it's not an alkane, so more likely an alkane. Then common alkanes used as solvents are like pentane, hexane, maybe. Wait, but which alkane has a mass fraction of hydrogen equal to 14.28%?
+
+Wait, let's compute that. The percentage can help find the molecular formula. Suppose the hydrogen percentage is 14.28% mass. Let's denote the formula as CnH2n+2, but wait, no, wait. Wait, no, wait: The molecule is a hydrocarbon; wait, but if it's a hydrocarbon, whether it's an alkane or not?
+
+Wait the question says "hydrocarbon Z"—alkane. So, its general formula is CnH2n+2? No, wait, for alkanes, the formula is CnH2n+2. So, for Z, the mass percentage of H is 14.28%. Let's compute that.
+
+Let’s find n. The molecular mass of Z is M = 12n + 2(m) where m is the number of H. Wait, perhaps another approach. The percentage of H is (mass of H in molecule)/(total molecular mass) ×100.
+
+So for an alkane CnH2n+2, the molecular mass is 12n + 2n+2 = 14n +2.
+
+The mass of H is 2n+2 atoms × 1g/mol → but wait, no: each H atom is 1 g/mol. So total mass of H is (2n+2) * 1 = 2n + 2.
+
+So hydrogen's mass fraction is [ (2n+2) ] / (14n + 2) ) × 100% = 14.28%
+
+Let me set up the equation:
+
+(2n + 2) / (14n + 2) = 14.28 / 100 → 0.1428.
+
+Let's compute 0.1428 = (2n+2)/(14n+2)
+
+Multiplying both sides by (14n+2):
+
+0.1428*(14n + 2) = 2n + 2
+
+Compute 0.1428 *14: 2. So, approx:
+
+For 14n: 0.1428 ×14n = 2n.
+
+For 2: 0.1428 × 2 = 0.2856.
+
+So 2n + 0.2856 = 2n + 2.
+
+Wait, that can’t be right.
+
+Wait, teacher—this gives 2n + 0.2856 = 2n + 2.
+
+Subtract 2n from both sides: 0.2856 = 2 → That can't be right. So either my approach is wrong or I made a calculation error.
+
+Alternative approach: set up the exact equation.
+
+(2n + 2) * 100 = 14.28*(14n + 2)
+
+Calculate 14.28 is 14.28 = approx 1/70 → Wait! Because 14.28 *7≈99.96≈100. So 14.28 ≈ 100/7. Let me make this precise. 14.28 is 1/7 *100? 7 ×14.28=100 approximately.
+
+So, 14.28% → 14.28 = 100/7 approx 14.2857. So let's use fractions for better precision.
+
+We can write 14.28% as 14.28 = 14 + 28/100 → 14.28 = 357/25? Hmm, perhaps better to use 12.5 × 200/17 as someone said? Alternatively, let's compute it as a fraction.
+
+But perhaps I can multiply both sides by 100 to get rid of decimals.
+
+So:
+
+(2n +2 ) * 100 = 14.28 * (14n +2 )
+
+Compute 14.28 * (14n + 2)=14.28*14n +14.28*2.
+
+14.28 ×14n: 14 is (100/7) ×14 is 100/(7/14) → Hmm, perhaps better to compute 14 ×14.28. Let me compute 14.28 ×14:
+
+14 ×14.28 = (14 ×14) + (14 × 0.28) → 196 + 3.92 = 199.92
+
+And 14.28 × 2=28.56
+
+So rearranged:
+
+100*(2n +2) = 199.92n +28.56.
+
+Expand left side: 200n + 200 = 199.92n +28.56.
+
+Subtract 199.92n from both sides: (200 – 199.92)n +200 =28.56 →0.08n +200 =28.56.
+
+Subtract 200: 0.08n = –171.44 → n= -171.44 /0.08 → which can’t be right, n is negative. Hmm, not possible. So this suggests that I made a miscalculation.
+
+Wait I think the mistake is, perhaps, that the formula for the alkane may not be CnH2n+2? Wait, no, the formula for an alkane is correct as CnH2n+2.
+
+But perhaps I messed up the percentage equation. Wait, mass frac H is (# of H's *1 g/mol)/( (12n + (2n +2)*1 )) = (2n+2)/(14n +2) ×100 =14.28%.
+
+So:
+
+(2n+2) / (14n+2) = 0.1428.
+
+Let's compute both sides:
+
+Multiply both sides by (14n+2):
+
+2n+2 =0.1428*(14n+2 )
+
+Calculate 0.1428*14 = approx 2? Well, 0.1428 ×14= (14 * 1/7)=2 (since 1/7=0.142857). Exactly, 14 ×1/7=2. So 0.1428*14n= 2n. And 0.1428 *2= 0.2856.
+
+So:
+
+2n +2 = 2n + 0.2856 → Subtract 2n→2=0.2856 → No way. That can't be.
+
+Hmm, that implies no solution? That can't be, so something must be wrong. Maybe my assumption that Z is an alkane is incorrect. But according to the question, Z is the product of the complete hydrogenation of X and Y. So in X, alkenes probably. 
+
+Wait, but the initial statement said X consists of two liquids that decolorize bromine. So perhaps the original mixture X has dienes or some alkynes? But hydrogenation would depend on that.
+
+Wait, but wait the problem says "There are no conjugated multiple bonds in the molecules of the compounds of mixture X." So in X each compound just has non-conjugated multiple bonds—maybe each has two double bonds, as long as they are not conjugated, perhaps. So each component is a diene but not conjugated.
+
+Wait, but if X is two alkenes, perhaps the same for each after reaction. Or perhaps mixture X has the same number of moles of two different alkenes. Let me not get stuck here.
+
+Wait, perhaps the substance Z is ethane? Let's see: C2H6. Let's calculate its H percentage.
+
+Molecular mass: 2*12 +6=30.
+
+H is 6/(30) = 0.2 → 20% → which is higher than 14.28, so not ethane.
+
+Alternatively, pentane? Molecular formula C5H12.
+
+Mass of H: 12 → in 65 g/mol (12*5+12=60+12=72? Wait, wait 5*12=60; 12 H is 12. Wait, wait wait: (5*12) =60, number of H is 12 (for pentane it's C5H12. So 12 hydrogens.
+
+12/(60+12) =12/72=1/6≈16.67% → wait, closer, but still not 14.28.
+
+Hmm, what's 14.28 as a fraction? It's like 1/7. So 1/7 is approximately 14.28%.
+
+Hmm then, if 1/7 ≈ 14.28%, then hydrogen's mass fraction is 1/7. So,
+
+Hydrogen mass: (2n +2) *1 = 2n + 2 grams per mole.
+
+Molecular mass: 14n +2 grams per mole (from this, since 12n + (2n+2)).
+
+So,
+
+(2n + 2)/(14n +2) = 1/7.
+
+Cross multiply:
+
+7*(2n+2) = 14n +2.
+
+14n +14 =14n +2 → Subtract 14n: 14=2→14=2 → Which is impossible. Hmm. Another miscalculation here.
+
+Wait, wait perhaps I messedup n? What if Z isn't an alkane? Oh wait, wait Z is a hydrogenation product, so it's just a matter of being fully hydrogenated. If X requires hydrogenation to become Z, and since Pt is a catalyst, perhaps each double bond in X is hydrogenated to a single bond. But wait, in X mixture, maybe each component is a different type of double bond?
+
+Alternatively, perhaps each component of X has a different number of double bonds. So when X is hydrogenated, both components convert to Z. But if X is two different substances that upon hydrogenation become the same Z, so these two alkenes must be isomers that hydrogenate to the same alkane?
+
+Wait, that's possible. For instance, suppose the two substances in X are 1-pentene and 2-methylbutene. Both are alkenes with different structures. Upon hydrogenation, each becomes pentane. So if that's the case, when X is hydrogenated, all becomes Z, which is pentane.
+
+Let me check the hydrogen mass percentage for hexane.
+
+Hexane is C6H14 ⇒ mass H is 14/(72 +14)=14/(86)=0.16279 or ~16.28%. Which is higher than the given 14.28%.
+
+Not matching.
+
+Next, heptane: C7H16. 16/(84 +16)=16/100=16%. Again higher.
+
+What about methane? C1H4? No, that doesn't exist. For propane, C3H8: 8/(36 +8)=8/44≈18.18% No. Butane: C4H10→10/(48 +10)=10/58≈17.24%. No. Pentane 12/72=16.66%. Hexane 14/86≈16.27%.
+
+Hmm, maybe ethane but wait ethane didn't fit. Hmm, perhaps not an alkane...
+
+Wait, but maybe its cyclopropane? Let's see.
+
+Cyclopropane is C3H6: ?
+
+Wait, ethylene becomes ethane upon hydrogenation. So perhaps Z is ethane? But we just saw that ethane had 20% H. But why?
+
+Hmm, let's check:
+
+Wait, the error earlier when using the exact fraction—let me treat 14.28 as 1/7.
+
+(2n+2) over (14n +2) = 1/7.
+
+7*(2n+2) = 14n+2 → 14n +14 =14n +2 → 14=2, which's not possible. So no solution, which is a problem. Maybe something else.
+
+Wait, perhaps Z is ethylene but wait when it is fully hydrogenated, which would be ethane. Hmm, else, perhaps Z is a ring structure which is more saturated. Wait, if during hydrogenation rings open, but Z is given as being a constituent of Y, which is formed by disproportionation, that may complicate things.
+
+Wait, perhaps Z is a branching type. Let me think differently. Instead of a straight-chain alkane, perhaps we're dealing with a branched one.
+
+Wait, perhaps I'm missing something. Let me instead think about mixture X.
+
+X is an equimolar mix of two alkenes, which on hydrogenation (with Pt and severe conditions) gives an alkane Z.
+
+So each alkene in X must hydrogenate to Z. So, they must be structural isomers that, upon hydrogenation, give the same alkane.
+
+The possible alkenes that hydrogenate to the same alkane—so for example, 1-pentene and 2-pentene both hydrogenate to pentane.
+
+But wait, no. Wait, 1-pentene and 2-pentene hydrogenate to pentane, but wait, wait—I thought hydrogenation reduces double bonds, but regardless of their position. Yes, so hydrogenation of any alkene would result in the alkane. So e.g., let me see:
+
+If X consists of two di-alkenes with different structures but which, upon hydrogenation, form the same product. Wait, no, because two different dienes may hydrogenate to same product only in some cases.
+
+Alternatively, maybe each of the two liquids in X is an alkene that, upon crashing (e.g., ring-opening), forms same alkane.
+
+Alternatively, maybe X has two alkenes that form the same isomeric alkanes.
+
+Alternatively, perhaps the two alkenes are structural isomers. For example, maybe X consists of 1,3-pentadiene and another diene. No, wait, the problem states there are no conjugated double bonds. So each component in X cannot have conjugated double bonds, so maybe each has a single double bond, not conjugated.
+
+So each component in X is a single non-conjugated alkene. Or perhaps they have two double bonds but not next to each other.
+
+Wait, the question states that when treated with Pt (and heat)—which gives disproportionation to Y. So the initial thing is they undergo a reaction (disproportionation) to Y.
+
+Hmm, but how can containing alkenes undergo a disproportionation reaction with Pt in heat? Maybe some other functional groups. Hold on, perhaps the mixtures X isn't alkenes but something else. Did I blunder?
+
+Wait, another point: Y is formed from X by disproportionation. So X must contain one or more species that can disproportionate. For example, sometimes in alcohols or other functional groups. But in the first part, X is said to decolorize bromine, which suggests unsaturation.
+
+Wait but another thought: perhaps the two components in X are more like substituted alkenes, but when hydrogenated under severe conditions, e.g., perhaps when hydrogenated introduce more H and they form rings or other structures. But hydrogen generally doesn't bring about ring formation; perhaps Z is a bicyclic alkane? No, the hydrogenation would just saturate double bonds.
+
+Wait, maybe X is made of two alkenes, each with same number of carbons but different positions. Upon hydrogenation, each converts to the same alkane. For example, 1-pentene and 2-pentene both become pentane when hydrogenated. Because hydrogenation just adds H2 across the double bond so hydrogenation of either ends in pentane.
+
+But wait, for example, (CH2)3CHCH2 (1-pentene) and CH2CH2CH2CH2CH2 would be different structures.
+
+Wait, but I'm getting confused here. I'll try to think about possible alkenes that upon hydrogenation lead to same alkane. They would need to have the same number of carbons but different structures, but which would hydrogenated into same n-alkane. That's possible if their double bonds are at different positions but in such a way that they become same when hydrogenated. Wait, but 1-pentene and 2-pentene both become pentane upon hydrogenation? No, but no. Because 1-pentene is CH2=CHCH2CH2CH3, and upon hydrogenation he becomes pentane CH2CH2CH2CH2CH3; no, that would not make sense. Wait no, hydrogenation would give CH2CH2CH2CH2CH3. That's not an alkane. Wait, no, no. Hydrogenation would add two H's across the double bond. So 1-pentene upon hydrogenation becomes pentane ( CH3CH2CH2CH2CH3? Wait, that can't be right because the positioning would change...)
+
+Wait this is getting too detailed perhaps. Let me abandon this line and think that when X is hydrogenated, we get pentane as Z. Then the percentage for pentane is 12/(5*12 +12) =12/60 +12? Wait, 5 carbons. Molecular mass would be (5*12) + (12*1) ? No. Wait no, 5 carbons in each Z, their formula is C5H12? Then H percentage is (12)/ (5*12 + 12*1) → 12/(60 +12 )=12/72=1/6=16.666%, not 14.28%, which is about 1/7.
+
+So that's not it.
+
+Alternatively, suppose Z is heptane. C7H16. H percentage is 16/(84 +16 ) → 16/100=16%, which is higher than 14.28.
+
+Hmm, wait another approach, perhaps considering toluene. But toluene is not an alkane. Wait, no because Z is an alkane, as per the hydrogenation result.
+
+Wait, what about a cycloalkane? For example, cyclopropane would have CH2 groups—each carbon connected with two CH2 units. But looking at cyclopropane, it's C3H6, which has no rings to hydrogenate. So if X contains cyclopropane, hydrogenation with Pt would stay same. But Z is a constituent of Y, which comes about from X's components, maybe.
+
+Wait, but I'm getting stuck here, so perhaps I should move on and perhaps return to this part later.
+
+Let me consider the solution provided in the problem. The problem requires the total number of H atoms in two liquids of mixture X. Each liquid of mixture X must have each a molecule of two liquids, but perhaps each consists of dienes, but without conjugated double bonds.
+
+Alternatively, perhaps each of the two liquids is something like propene and something else, but when they are heated with Pt, undergo some reaction.
+
+Wait, another point: the mixture Y doesn't decolorize bromine water, so perhaps Y contains alkanes, meaning that X started as alkenes. Because when X is treated to hydrogenation, you end up with alkanes.
+
+Wait, perhaps X is two different alkenes which, after hydrogenation, only give Z. So X is a 1:1 mix of two alkenes that hydrogenate to the same alkane Z. So the number of C and H in Z would be the same regardless of which one you start with. So maybe the two alkenes in X should, upon hydrogenation, give one and only one of Z. 
+
+Let's consider what alkenes give the same alkane. Let's think of isomers.
+
+Let me compute from Z's hydrogen mass—maybe it's butane: C4H10. 10 H atoms, molecular mass is 4*12 +10=58,
+
+Hydrogen mass fraction is 10/(58) ≈17.24%, which is around 17% (not 14.28%).
+
+Wait, another approach: Let me think of an alkane which has exactly 14.28% hydrogen.
+
+So, for Z, using the hydrogen mass fraction:
+
+mass H / (mass of carbon + mass of H) = 14.28/100 → [ (2n +2) ) ] / (12n + 2n +2 ) = 14.28%.
+
+Again:
+
+(2n +2)/(14n +2) × 100 =14.28 → (2n+2) / (14n +2) =0.1428
+
+Multiply both sides by denominator: 2n+2= 0.1428*(14n +2)
+
+Compute the RHS: 0.1428 *14n =2n, and 0.1428 *2=0.2856→ 2n +0.2856=2n +2 → 0.2856=2 → impossible.
+
+So perhaps my formula is wrong. The alkanes' formula is correct as CnH2n+2. But maybe Z is a di-substituted something else.
+
+Wait, another thought: What if Z isn't a perfectly saturated alkane, but perhaps there aren’t any rings. Hmm, but that won’t change the calculation.
+
+Alternative approach: perhaps Z is not an alkane but an aromatic compound. But in that case, it can't be a product of complete hydrogenation from alkenes.
+
+Wait, it's impossible, as aromatic compounds don't hydrogenate completely under normal conditions. But that can’t be because the problem states that Z is the product of hydrogenation of X and Y under severe conditions. Maybe Z is an alkane, but perhaps I have mistaken in the formula, let me re check the calculation.
+
+Hmm, suppose I get another approach. 14.28% is 1/7 in fraction. Let me set (H mass)/M = 1/7.
+
+H mass → (2n +2) g/mol.
+
+M = (12n +2n +2) =14n +2.
+
+So, 2n +2 = M/7 → → (14n +2)/7 → Which gives 2n +2 = 2n + (2/7 ).
+
+2n+2= 2n + (2/7 )
+
+Again impossible, because 2=2/7 → Not possible. This gives no solution. Hmm, maybe my original assumption is wrong and Z is not an alkane.
+
+Wait another idea—could Z be a cyclohexane?
+
+Cyclohexane is C6H12. Compute H's mass percentage.
+
+12/(6*12 +12) → 12/(72 +12) = 12/84 =1/7→14.2857%, yes exactly.
+
+So, Z is cyclohexane—C6H12. Because 12/(84) =1/7, hence 14.2857% which is 14.28 as given.
+
+So, Z is cyclohexane (C6H12).
+
+So the product of hydrogenation of X and Y under severe conditions is cyclohexane.
+
+Which implies that X and Y have cyclohexene ( C6H10 ) and some other compounds, perhaps.
+
+Wait, no: when X is hydrogenated, it gives Z, which is cyclohexane.
+
+But X is X and Y, which is obtained by the disproportionation of X.
+
+Hmm. Wait, when X is treated with Pt and heated, it undergoes disproportionation to form Y. So, suppose each component of X is undergoing a reaction not merely hydrogenation but some other process, perhaps involving cleavage.
+
+Wait, let me think. For example, ethanol is an example that can disproportionate under certain conditions. But perhaps the problem here is that for X, we have two alkenes. But, when treatment with Pt and heat causes a reaction beyond hydrogenation. Or maybe another reaction.
+
+But let's proceed. So Z is cyclohexane, which is C6H12. 
+
+Now, mixture X is a mixture of two liquids that react with bromine, meaning X contains alkenes or other unsaturated compounds.
+
+Upon hydrogenation, X→Z; Y → Z.
+
+Y, formed by the disproportionation of X, is also a mixture of two components, which may be derivatives from the original X with different structures, perhaps via an acid-catalyzed hydration or another reaction. Or perhaps an electrocyclic reaction.
+
+Wait, perhaps X consists of two alkenes that, when heated with Pt, undergo ring-closing or ring-opening. Either way, leading to Y.
+
+Wait, but for Y's mixture to not react with Br2, it must have no double bonds. So perhaps Y is a product where the double bonds have been hydrogenated, but given that Z is the product upon full hydrogenation, but in this case, for Y, perhaps the reaction is not hydrogenation but ring-opening.
+
+Hmm, perhaps my confusion is leading me away. Let me focus.
+
+In this scenario:
+
+- X: equimolar mixture of two alkenes → on heating with Pt → undergoes disproportionation → equimolar Y mixture of two other liquids (saturated), from X.
+
+- X's components, when fully hydrogenated (Pt, severe conditions), give Z.
+
+Similarly, Y's components, when hydrogenated, also give Z.
+
+Ah, so both X and Y are rich in different compounds that upon full hydrogenation result in Z (cyclohexane).
+
+Wait a moment.
+
+So X contains two components, let me call them a and b. These are alkenes. They, when treated with Pt and heat in the presence of whatever conditions (could be H2), undergo disposal into Y. But perhaps, I think, the Y comes from a reaction such as splitting.
+
+Wait, perhaps the hydrogenation of X's components will form cyclohexane.
+
+Wait, cyclohexane is a saturated hydrocarbon—so the original must have been cyclohexene. So if X consists of cyclohexene and some other alkene. Upon hydrogenation, each would become cyclohexane. But then Y would need to come from a disproportionation. Not sure.
+
+Y is formed by disproportionation. Let's think of a common disproporportionation in alkenes. Hmm, maybe a reaction where an alkene is split into two products.
+
+Wait, for apportionation going in ethylene maybe? I can’t think. Another thought: perhaps the mixture X consists of two off-the-shelf alkenes, each undergoes a hydrogen reaction creating other products which then combine into Y, but when you hydrogenate X or Y you get Z.
+
+But, I suppose given that it's difficult, perhaps the total number of H atoms in each liquid of X is determined.
+
+Since each portion of X provides after full hydrogenation to give Z, which is cyclohexane—mass formula C6H12.
+
+Wait, let me consider what X's components must be to give cyclohexane after hydrogenation. For example, cyclohexene becomes cyclohexane upon hydrogenation, and another di-olefin becomes cyclohexane.
+
+Wait, for instance, if X is a mixture of 1,3-cyclohexadiene and cyclohexene, but that has conjugated double bonds. But the problem states X has no conjugated double bonds, so it can't.
+
+Alternatively, other possibilities. If the two components are 1-hexene and possibly another di-substituted alkene in non-conjugated positions.
+
+Wait, let me think about each X's component being an alkene which, when hydro,genated, forms cyclohexane. So the X's alkenes, if opened via hydrogenation, must generate cyclohexane. So each component must be a di-ene but no conjugated. Alternatively, perhaps each of X’s alkenes is a vinyl group in a molecule that, when hydrogenated, would form cyclohexane.
+
+Alternatively, each X component is a mono-unsaturated compound with a structure that, upon hydrogenation, forms cyclohexane. So X's components must have structures that, when hydrogenated, form same structure.
+
+Wait, for example, if X is 1,5-hexadiene, but it has non-conjugated double bonds? Hmm, no.
+
+Alternatively, what if each X component is cyclopentene and some other alkene, but that when hydrogenated forms cyclohexane. No, cyclopentene would hydrogenate to cyclopentane.
+
+Wait, perhaps the alkenes in X are simple alkenes that each, when hydrogenated, form the same substituted cyclohexane.
+
+Wait, total number of H atoms in X's two liquids is the question.
+
+Wait, since Z is C6H12, that comes from each component in X upon hydrogenation. Each X's component, let's say, is has each (n)alkene. Let’s say, when each X is hydrogenated to give Z (C6H12), perhaps its X's components are C6H10 when hydrogenated. So each X's component is C6H10 (i.e., cyclohexene or 1-hexene).
+
+If X has two alkenes each being 1-hexene and 2-hexene, each of same type, but if hydrogenated, same as hexane (CH3CH2CH2CH2CH2CH3).
+
+Wait but no, hydrogenation of 1-hexene (CH2CH-CH2-CH2-CH2-CH3→ CH2CH2-CH2-CH2-CH2-CH3). Wait, no actually, upon hydrogenation 1-hexene becomes hexane, and if 2-hexene is used, it also becomes hexane upon hydrogenation. So if X is 1-hexene and 2-hexene in equimolar mix, on hydrogenation, it would produce hexane (still same product Z unless something else happens).
+
+But Z's hydrogen mass fraction is 14.28%, implying it is cyclohexane (as we calculated earlier). For Z to be cyclohexane, the starting X components must be cyclohexene, which upon hydrogenation to cyclohexane.
+
+Thus,
+
+If X is a mixture containing cyclohexene and another alkene which upon hydrogenation gives cyclohexane again. But? Wait, that would only be another di-substituted alkene. Wait, perhaps if. That's only cyclohexene, but then another compound which upon hydrogenation also gives cyclohexane.
+
+Alternatively, perhaps another di-substituted alkene which also to cyclohexane upon hydrogenation.
+
+Wait, considering cis and trans cyclohexene, would hydrogenation produce same product (cyclohexane) regardless.
+
+But the initial question says X contains two different liquids, two different alkenes perhaps.
+
+Wait, another possibility: Maybe X has two different alkenes that when hydrogenated form cyclohexane but look different otherwise.
+
+This is tricky. Alternatively, perhaps X has two alkynes each which, when hydrogenatated give cyclohexane. But would the X solution give 14.28% for Y? I think not.
+
+Wait, now going back to Y. It is obtained via a disproportionation reaction of X under Pt and heat. The original X is two alkenes (each non-conjugated double bonds) that upon treatment with Pt (and possibly H2?), a reaction that forms Y according to the description.
+
+Alternative, perhaps the components in X are unsaturated and upon being heated (Pt catalyst) undergo split disproportionation. Hmm—I can think of for example, the cleavage of a diene into two alkenes, but that doesn’t fit the concept of disproportionation.
+
+Wait, perhaps each component in X can break into two separate molecules, thus altering the structure.
+
+Another thought: What if each component in X is a propene-like structure (but that seems unclear). Wait, another approach: If X has two alkenes, which upon treatment with hydrogen and Pt, undergo cleavage reactions (like breaking into smaller pieces). For instance, breaking into ethylene and something else. But I think I'm taking too long here; perhaps I should move to what the question asks. It wants the total number of hydrogen atoms in the two liquids (the mixture X). 
+
+Wait, mixture X has two components. Each is free of conjugated multiple bonds. Each is an alkene. 
+
+Each of these alkenes, after hydrogenation with Pt under severe conditions, become Z, which is cyclo-Hexane (C6H12), which has 12 hydrogens per molecule.
+
+If X is two alkenes, each must have a structure that upon hydrogenation gives cyclohexane.  So each must, initially, have a double bond that, when hydrogenated, leads to cyclohexane.
+
+Perhaps each component has the following structures that hydrogenate into cyclohexane.
+
+Option 1: Each X's component is cyclohexene (C6H10), because hydrogenated, it becomes cyclohexane.
+
+But wait, if X is a mixture of two moles of cyclohexene, it would be the same as being itself. So that would not account for Y being a different mixture. So perhaps X consists of two different rings.
+
+Wait that can’t be, because Y is an equimolar mixture that doesn't contain double bonds.
+
+Wait, perhaps X also contains not cyclohexene but another alkene.
+
+Wait, let me think. Suppose that in the hydrogenation process, the two alkenes in X supply hydrogen to form Z. But given the complexity, perhaps let me think of X's components as two alkenes, with structures that can upon heating and presence of Pt, undergo a reaction that breaks to form two different products.
+
+Hmm.
+
+But as this is taking a while, perhaps let's find out what the problem is asking: the number of H's in the two X liquids. 
+
+The options are 16, 18, 22, 12. 
+
+If X has two components, perhaps each is cyclohexene (C6H10 ). If this is the case, each molecule has (H=10), so two molecules →20. But option A) 16.
+
+But number should add the H's, suppose X is mix A and B:
+
+If X has two alkenes, each potentially with multiple double bonds.
+
+Alternatively, suppose each X's liquid is an di-substituted alkene without conjugation.
+
+Hmm.
+
+Wait, another thought: After Y is formed, when Y is hydrogenated, it also gives Z→ so Y must contain same as X after hydrogenation.
+
+Since X → Y via disproportionation. So weather I can find what X and Y can be.
+
+But as I'm a bit stuck, perhaps another possible approach is needed. The overall goal is to find the total number of Hydrogen atoms in the two liquids of X. Maybe each X has multiple double bonds and upon hydrogenation, each adds Hs.
+
+But perhaps the correct answer lies in knowing the structure of Y and X.
+
+Earlier, I think, I had a bug when considering X having cyclohexene and another alkene which upon hydrogenation would lead to cyclohexane. But since X has two different liquid alkenes, perhaps getting a reaction would lead to Y which no longer has alkenes (idelity outcome: perhaps ring structures?)
+
+Wait, maybe X is mixture of butadiene and another diene, but no—they have conjugated so perhaps not.
+
+Knowing that the only possible Z is cyclohexane from earlier, which is necessary for 14.28% H.
+
+Thus, the two alkenes of X when hydrogenated would each become cyclohexane.
+
+Thus, each of the two alkenes in X must have six carbon atoms. Soircircular 
+
+Each of X's two alkenes is a mono-unsaturated alkene that upon hydrogenation becomes cyclohexane.
+
+Wait, but that suggests cyclohexene (C6H10) → which upon hydrogenation becomes cyclohexane (C6H12). So each molecule of X component would have 10 H's, so two molecules → 20 H's? But the options don’t include 20 except for C) 22. Wait, option C is 22, but 20 didn't come up.
+
+ Alternatively, perhaps each X has a larger alkene. For instance pentene, but if X is 1-hexene, and another molecule of 2-pentene or something else.
+
+Wait no, then each hydrogenated might not form cyclohexane.
+
+Wait, perhaps it's butene which, upon some combination, forms, but it's difficult. Alternatively, perhaps everyone must yield cyclohexane.
+
+Wait, but another thing—the problem says when X is treated with Pt when heated, a dimension occurs → it's a disproportionation reaction.
+
+Wait, or perhaps the two alkenes in X change their structure during the reaction.
+
+Another angle: if X has two alkenes, perhaps a and b, which on treatment with Pt and heat, undergo a reaction: for example, one part of a combines with something, and another part... Not sure.
+
+But given that I'm running out of time and the problem is供需,zhi, I'll try to come up with a probable route. Since the only Z that satisfies 14.28% H is cyclohexane (C6H12), so X and Y must comprise cyclic alkenes such as cyclohexene and something else.
+
+Assume mixture X is composed of two moles each cyclohexene. Then total H would be 2×10 =20. But wait, that's not an option, so perhaps X consists of another kind of alkene.
+
+Hmm, Perhaps X is a mixture of two alkenes which, when hydrogenated, form cyclohexane.
+
+But the alternative is perhaps cyclohexene and, say, ethylene. Which upon hydrogenation (overcomplete), but wait the hydrogenation of ethylene gives ethane. Then, that wouldn't fit, as Z would be both ethane and cyclohexane which may not.
+
+ So given this inconsistency, perhaps X consists of two alkenes each, each provides the same amount of hydrogens upon hydrogenation → leading to The H percentage of 14.28.
+
+Wait, maybe each component in X is a tri-substituted alkene. For instance:
+
+Two alkenes in X, each with formula Cn H2n.
+
+Upon hydrogenation each -> Cn H2n+2.
+
+But we need to find such n --> going back.
+
+Suppose each component → Z, which is Cm H2m+2.
+
+The mixture for Z comes from each X's H addition. If both are from same n and same formula, perhaps.
+
+Alternatively, ok wait, no, because Z is only one product. So if X has two alkenes which, upon adding H2, become the same alkane, Z.
+
+So each component must be such that upon the same number of H2 additions, becomes same alkane—all become cyclohexane.
+
+Wait, so each X's component must have the same number of carbons as Z.
+
+Z is C6H12.
+
+Wait, those could be alkenes from which, when hydrogenated, give Z.
+
+So each of X's components has six carbons. (Because Z is C6H12 →n would be 6: no, wait years murder to alkanes alkanes have formula Cn H2n+2.
+
+So for Z, 2n+2=12 → 2n=10 → n=5.
+
+Wait, so Z is pentane (C5 H12) because 5 ×12 + 12 =60 +12=72 → but the H mass is 12/72=16.66% which is higher than 14.28. So when earlier calculation with Z as cyclohexane didn't match with an alkane.
+
+Only in the case of Z being cyclohexane (C6H12), the H% is 14.28%. But it is obtained and sports a faulty alkane: Now, you see, confusion!
+
+But no, cyclohexane is C6H12. But Z is from hydrogenation of X and Y.
+
+Wait, maybe I should assume that it is cyclohexane, despite the earlier formula trouble.
+
+Thus, X contains two alkenes which, when hydrogenated under severe conditions, form cyclohexane.
+
+Thus, each of those alkenes would be mono-alkenes, and upon hydrogenation gain two Hs each.
+
+So each X-component is C6H10 (so the alkene is cyclohexene as the alkene).
+
+If each component in X is cyclohexene, each molecule has 10 H atoms. Since X is a 1:1 mixture, two molecules: each with 10 H, so 20 H total. But as I can't find 20 in options, maybe this line is wrong.
+
+Alternative Idea: Perhaps X consists of norbornene (a more complex structure) that when hydrogenated gives some Z. But it's getting complicated.
+
+Another way: Let’s say each X's component has formula CnH2n—consider n= for X’s component to that upon hydrogenation gives Z.
+
+Z is cyclohexane, which is C6H12.
+
+Wait, n=6: upon hydrogenation:
+
+If X's member is C6H10 → which becomes C6H12 → which has 12 H → earlier calculation indicates

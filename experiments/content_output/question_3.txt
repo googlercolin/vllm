@@ -1,0 +1,186 @@
+Question: A spin-half particle is in a linear superposition 0.5|\uparrow\rangle+sqrt(3)/2|\downarrow\rangle of its spin-up and spin-down states. If |\uparrow\rangle and |\downarrow\rangle are the eigenstates of \sigma{z} , then what is the expectation value up to one decimal place, of the operator 10\sigma{z}+5\sigma_{x} ? Here, symbols have their usual meanings
+A) -1.4
+B) 1.65
+C) -0.7
+D) 0.85
+
+Assistant Response:
+<think>
+Okay, so I'm trying to figure out this quantum mechanics problem. Let's see, a spin-half particle is in a state that's a linear combination of spin-up and spin-down states. The state is given as 0.5|↑⟩ + sqrt(3)/2 |↓⟩. Hmm, I remember that |↑⟩ and |↓⟩ are the eigenstates of the σz operator.
+
+The question asks for the expectation value of the operator 10σz +5σx. So I need to calculate <ψ| (10σz +5σx) |ψ>.
+
+Wait, expectation values usually involve measuring the average value. Right, for any operator O, the expectation is ⟨O⟩ = ⟨ψ| O |ψ⟩.
+
+I remember that for expectation values of σz and σx, since they're Pauli matrices, their expectation values can be found using the coefficients of the state.
+
+The σz operator's eigenvalues are +1 and -1 for |↑⟩ and |↓⟩ respectively. So, each term in the expectation value can be calculated separately.
+
+Also, because the expectation value is linear, I can split this into 10⟨σz⟩ +5⟨σx⟩.
+
+Right, so first I'll calculate ⟨σz⟩. Since the state is a combination of σz eigenstates, the expectation of σz is given by the sum of the probabilities multiplied by their respective eigenvalues.
+
+The coefficient for |↑⟩ is 0.5, so its probability is (0.5)^2 = 0.25. Similarly, for |↓⟩ the coefficient is sqrt(3)/2. Its square is (3/4)= 0.75.
+
+So, σz expectation is 0.25*(+1) + 0.75*(-1) because the eigenvalue for |↑⟩ is +1 and |↓⟩ is -1. Let's compute that: (0.25)(1) = 0.25, (0.75)(-1) )= -0.75. Adding them together, 0.25 - 0.75 gives -0.5.
+
+Okay, so ⊐σz⟩ = -0.5.
+
+Now for σx. The expectation of σx in a spin state is a bit trickier. I think it's equal to the probability of the state being in the |→⟩ state, which is eigenstate of σx, but wait, maybe I should compute it using the coefficients.
+
+Alternatively, I recall that σx is the Pauli X matrix. In terms of |↑⟩ and |↓⟩, the matrix is [[0,1],[1,0]].
+
+Hmm, yes. So the expectation value for σx is computed as:
+⟨ψ|σx |ψ⟩.
+
+Expanding this, |ψ⟩ is a*(|↑⟩) + b*(|↓⟩), where a=0.5 and b=sqrt(3)/2.
+
+So σx applies as following: σx |↑⟩ = |↓⟩ and σx |↓⟩ = |↑⟩.
+
+So applying σx to |ψ⟩, you get a|↓⟩ + b|↑⟩.
+
+Then, the inner product with ψ would be (a') (a^* ) + (b') (b^*) ?
+
+Wait, let me do it step by step.
+
+⟨ψ|σx = a^* ⟨↑| + b^* ⟨↓| multiplied by σx which, when applied to |ψ⟩, gives a |↓⟩ + b |↑⟩.
+
+So inner product ⟨ψ|σx|ψ⟩ would be a* b + b* a.
+
+Wait, let me see more carefully.
+
+⟨ψ|σx|ψ⟩ = (a)^* times ⟨↑| σx (a |↑⟩ + b |↓⟩ ) + (b)^* times ⟨↓| σx (a |↑⟩ + b|↓⟩ )
+
+Wait, upon σx applied to the composite state, that's a |↑⟩ → a |↓⟩ and b |↓⟩ → b |↑⟩, so:
+
+σx|ψ⟩ = a |↓⟩ + b |↑⟩.
+
+Then ⟨ψ| σx |ψ⟩ = ⟨ a* ⟨↑| + b* ⟨↓| | a |↓⟩ + b |↑⟩ ⟩.
+
+So that's a* times a 〈↑ | ↓〉 + a* times a b 〈↑ | ↑〉 ... no, wait, I think this is better approached as:
+
+⟨ψ |σx |ψ⟩ = (a)*(0) * a ) + (a) * (b) (some inner products) ... Wait no, matrix representation is probably better here.
+
+Alternatively, considering Pauli matrices in matrix form. The σx matrix is [[0,1],[1,0]]. The state vector |ψ⟩ can be written as a column vector. Let me see:
+
+The state |ψ⟩ can be written as:
+
+[ a ]
+
+[ b ]
+
+where a = 0.5, and b = sqrt(3)/2 ≈ 0.866. Hmm, but earlier the state is 0.5|↑⟩ + (sqrt(3)/2)|↓⟩, which becomes (0.5, sqrt(3)/2) in a column vector.
+
+Wait, but in terms of σx, perhaps it's easier to compute using matrix multiplication.
+
+So ψ is the column vector [a; b], σx is [[0 1],[1 0]], so σx |ψ⟩ would be [b; a ].
+
+Then, ⟨ψ| σx |ψ⟩ is (a*, b*) × [ b ; a ] = a* b + b* a.
+
+Which is 2 Re(a^* b) I think.
+
+So a is 0.5, real, and b is sqrt(3)/2, also real. So a* = a, b* = b. So 2( a*b + a b )? Wait, a*, which is a, times b plus b* (a), which is also same as 2 (a b + b a) ? Hmmm, no, no, expression is a^* b + b^* a = 2 ab since a and b are real. So that's 2ab.
+
+Let me compute a*b + b*a for real numbers a, b. So (0.5)(sqrt(3)/2) + (sqrt(3)/2)(0.5) ). That is 0.5 * sqrt(3)/2 * 2 because the two terms add. So equals (sqrt(3)/2 ) * (0.5 ) *2? Wait, wait: expanding it, each term is (0.5)(sqrt(3)/2 ) + same, so 2 *0.5 * sqrt(3)/2 = (0.5)* sqrt(3). So sqrt(3)/2 ≈ 0.866.
+
+So ⟨σx⟩ is, sqrt(3) /2  ?
+
+Wait but earlier when I wrote⟨σx⟩ in matrix terms it was 2ab.
+
+Wait, looking again: a is 0.5, b is sqrt(3)/2. So 2ab? Let's calculate: 0.5 * sqrt(3)/2 = sqrt(3)/4; times 2 gives sqrt(3)/2 ≈ 0.866.
+
+So, yes, ⟨σx⟩ equals sqrt(3)/2 ≈ 0.866.
+
+Wait, wait. So, putting this together:
+
+The overall expectation value is 10 ⟨σz⟩ +5 ⟨σx⟩.
+
+Which is 10*(-0.5) +5*(√3/2 ).
+
+Calculate each term:
+
+10*(-0.5) = -5.
+
+5*(√3/2 ) ≈ 5*(0.866) ≈4.33. Wait, 5*(sqrt(3)/2)=5*0.8660 approximately 4.3301.
+
+Adding them: -5 + 4.3301 is approximately -0.6699, about -0.67.
+
+Wait, but wait there's a confusion here. Because √3 is about 1.732, and√3/2 is approximately 0.866. 5 * 0.866 is around 4.33. Right.
+
+Ah, so the total expectation is 10*(−0.5) +5*(0.866) = (-5)+(4.33) = approximately -0.67.
+
+Rounding to one decimal place. So -0.7.
+
+Looking at the options, option C is -0.7.
+
+But wait the options show: 
+
+A) -1.4 
+
+B) 1.65 
+
+C) -0.7 
+
+D) 0.85 
+
+Hence, the correct answer is C) -0.7.
+</think>
+
+To solve the problem, we calculate the expectation value of the operator \( 10\sigma_z + 5\sigma_x \) for the given spin-half particle state \( |\psi\rangle = 0.5|\uparrow\rangle + \frac{\sqrt{3}}{2}|\downarrow\rangle \). The expectation value is computed as:
+
+\[
+\langle 10\sigma_z + 5\sigma_x \rangle = 10\langle \sigma_z \rangle + 5\langle \sigma_x \rangle.
+\]
+
+### Step 1: Compute \( \langle \sigma_z \rangle \)
+The eigenstates \( |\uparrow\rangle \) and \( |\downarrow\rangle \) of \( \sigma_z \) have eigenvalues \( +1 \) and \( -1 \), respectively. The state \( |\psi\rangle \) is a linear combination of these eigenstates, so the expectation value of \( \sigma_z \) is given by:
+
+\[
+\langle \sigma_z \rangle = (0.5)^2(+1) + \left(\frac{\sqrt{3}}{2}\right)^2(-1).
+\]
+
+Calculating each term:
+- Probability of \( |\uparrow\rangle \): \( (0.5)^2 = 0.25 \),
+- Probability of \( |\downarrow\rangle \): \( \left(\frac{\sqrt{3}}{2}\right)^2 = 0.75 \).
+
+Thus:
+\[
+\langle \sigma_z \rangle = 0.25(+1) + 0.75(-1) = 0.25 - 0.75 = -0.5.
+\]
+
+### Step 2: Compute \( \langle \sigma_x \rangle \)
+The operator \( \sigma_x \) is the Pauli-X matrix, which flips the spin states. Its expectation value for the given state is computed as:
+
+\[
+\langle \sigma_x \rangle = |a|^2 \langle \uparrow|\sigma_x|\uparrow\rangle + |b|^2 \langle \downarrow|\sigma_x|\downarrow\rangle + a^*b \langle \uparrow|\sigma_x|\downarrow\rangle + ab^* \langle \downarrow|\sigma_x|\uparrow\rangle,
+\]
+
+where \( a = 0.5 \) and \( b = \frac{\sqrt{3}}{2} \). Since \( \sigma_x \) has off-diagonal elements and eigenvalues \( \pm 1 \), the result simplifies to:
+
+\[
+\langle \sigma_x \rangle = 2\text{Re}(ab^*).
+\]
+
+Substituting \( a = 0.5 \) and \( b = \frac{\sqrt{3}}{2} \):
+\[
+\langle \sigma_x \rangle = 2 \cdot 0.5 \cdot \frac{\sqrt{3}}{2} = \frac{\sqrt{3}}{2} \approx 0.866.
+\]
+
+### Step 3: Compute the total expectation value
+The total expectation value is:
+
+\[
+\langle 10\sigma_z + 5\sigma_x \rangle = 10\langle \sigma_z \rangle + 5\langle \sigma_x \rangle.
+\]
+
+Substituting the values:
+\[
+\langle 10\sigma_z + 5\sigma_x \rangle = 10(-0.5) + 5(0.866) = -5 + 4.33 = -0.67.
+\]
+
+Rounding to one decimal place, the expectation value is \( -0.7 \).
+
+### Final Answer:
+The expectation value of \( 10\sigma_z + 5\sigma_x \) is **-0.7**, which corresponds to option **C**.
+
+Answer: C

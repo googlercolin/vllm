@@ -1465,20 +1465,24 @@ class LLMEngine:
         import csv, os, time
         # KV Cache Usage in %
         num_total_gpu = self.cache_config.num_gpu_blocks
-        gpu_cache_usage_sys = 0.
+        block_size = self.cache_config.block_size
+        gpu_cache_usage_perc = 0.
         if num_total_gpu:
             num_free_gpu = sum(
                 scheduler.block_manager.get_num_free_gpu_blocks()
                 for scheduler in self.scheduler)
-            gpu_cache_usage_sys = 1.0 - (num_free_gpu / num_total_gpu)
-        path = os.path.expanduser("~/vllm/scratch/kvcache_usages/kvcache_usage.csv")
+            gpu_cache_usage_perc = 1.0 - (num_free_gpu / num_total_gpu)
+            gpu_cache_usage = (num_total_gpu - num_free_gpu) * block_size
+        path = os.path.expanduser("~/vllm/experiments/kvcache_usages/kvcache_usage.csv")
         if not os.path.exists(path):
             with open(path, "w", newline="") as csvfile:
                 writer = csv.writer(csvfile)
-                writer.writerow(["timestamp", "gpu_cache_usage_sys"])
+                writer.writerow(["timestamp", 
+                                 "gpu_cache_usage_perc", 
+                                 "gpu_cache_usage"])
         with open(path, "a", newline="") as csvfile:
             writer = csv.writer(csvfile)
-            writer.writerow([time.time(), gpu_cache_usage_sys])
+            writer.writerow([time.time(), gpu_cache_usage_perc, gpu_cache_usage])
 
         return ctx.request_outputs
 

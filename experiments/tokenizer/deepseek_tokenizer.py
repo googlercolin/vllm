@@ -2,7 +2,7 @@
 # python3 deepseek_tokenizer.py
 import transformers
 
-chat_tokenizer_dir = "/home/colin/vllm/scratch/tokenizer"
+chat_tokenizer_dir = "/home/colin/vllm/experiments/tokenizer"
 
 tokenizer = transformers.AutoTokenizer.from_pretrained( 
         chat_tokenizer_dir, trust_remote_code=True

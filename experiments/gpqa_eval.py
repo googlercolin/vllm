@@ -12,8 +12,8 @@ import argparse
 def setup_directories():
     """Set up necessary directories and return path constants."""
     HOME = os.path.expanduser('~')
-    OUTPUT_DIR = f"{HOME}/vllm/scratch/content_output"
-    KVCACHE_USAGES_DIR = f"{HOME}/vllm/scratch/kvcache_usages"
+    OUTPUT_DIR = f"{HOME}/vllm/experiments/content_output"
+    KVCACHE_USAGES_DIR = f"{HOME}/vllm/experiments/kvcache_usages"
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     os.makedirs(KVCACHE_USAGES_DIR, exist_ok=True)
     
@@ -22,7 +22,7 @@ def setup_directories():
         'OUTPUT_DIR': OUTPUT_DIR,
         'KVCACHE_USAGES_DIR': KVCACHE_USAGES_DIR,
         'USAGE_FILE': f"{KVCACHE_USAGES_DIR}/kvcache_usage.csv",
-        'CSV_FILE': f"{HOME}/vllm/scratch/token_counts.csv"
+        'CSV_FILE': f"{HOME}/vllm/experiments/token_counts.csv"
     }
 
 def load_data():
@@ -39,7 +39,7 @@ def load_data():
 
 def setup_tokenizer(home_dir):
     """Initialize and return the tokenizer."""
-    chat_tokenizer_dir = f"{home_dir}/vllm/scratch/tokenizer"
+    chat_tokenizer_dir = f"{home_dir}/vllm/experiments/tokenizer"
     return transformers.AutoTokenizer.from_pretrained(
         chat_tokenizer_dir, trust_remote_code=True
     )
