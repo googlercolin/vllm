@@ -1471,15 +1471,16 @@ class LLMEngine:
                 scheduler.block_manager.get_num_free_gpu_blocks()
                 for scheduler in self.scheduler)
             gpu_cache_usage_perc = 1.0 - (num_free_gpu / num_total_gpu)
-        path = os.path.expanduser("~/vllm/experiments/kvcache_usages/kvcache_usage.csv")
-        if not os.path.exists(path):
-            with open(path, "w", newline="") as csvfile:
+        if gpu_cache_usage_perc > 0.0:
+            path = os.path.expanduser("~/vllm/experiments/kvcache_usages/kvcache_usage.csv")
+            if not os.path.exists(path):
+                with open(path, "w", newline="") as csvfile:
+                    writer = csv.writer(csvfile)
+                    writer.writerow(["timestamp", 
+                                    "gpu_cache_usage_perc"])
+            with open(path, "a", newline="") as csvfile:
                 writer = csv.writer(csvfile)
-                writer.writerow(["timestamp", 
-                                 "gpu_cache_usage_perc"])
-        with open(path, "a", newline="") as csvfile:
-            writer = csv.writer(csvfile)
-            writer.writerow([time.time(), gpu_cache_usage_perc])
+                writer.writerow([time.time(), gpu_cache_usage_perc])
 
         return ctx.request_outputs
 

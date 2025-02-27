@@ -39,7 +39,7 @@ def load_data():
 
 def setup_tokenizer(home_dir):
     """Initialize and return the tokenizer."""
-    chat_tokenizer_dir = f"{home_dir}/vllm/experiments/tokenizer"
+    chat_tokenizer_dir = f"{home_dir}/vllm/experiments/qwen2.5_tokenizer"
     return transformers.AutoTokenizer.from_pretrained(
         chat_tokenizer_dir, trust_remote_code=True
     )
@@ -146,7 +146,7 @@ def process_example(example, iteration, paths, tokenizer):
     prompt, choices, correct_answer = create_prompt(example)
     
     data = {
-        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
+        "model": "Qwen/Qwen2.5-7B-Instruct",
         "messages": [
             {"role": "user", "content": prompt}
         ]
@@ -207,49 +207,67 @@ def handle_kvcache_file(iteration, paths):
         shutil.copyfile(usage_file, new_usage_file)
         os.remove(usage_file)
 
-def run_evaluation(start_iteration=1, end_iteration=None):
-    """Run the evaluation process."""
+def run_evaluation(start_iteration=1, end_iteration=None, iterations=None):
+    """Run the evaluation process.
+
+    If 'iterations' (a list of iteration numbers) is provided, only those examples are processed.
+    Otherwise, examples between start_iteration and end_iteration (inclusive) are processed.
+    """
     paths = setup_directories()
     examples = load_data()
     tokenizer = setup_tokenizer(paths['HOME'])
     
-    # Set end_iteration to process all examples if not specified
-    if end_iteration is None or end_iteration > len(examples):
-        end_iteration = len(examples)
+    results = []
+    
+    if iterations is not None:
+        # Process only specific iterations provided by the user
+        valid_iterations = []
+        for iteration in iterations:
+            if 1 <= iteration <= len(examples):
+                valid_iterations.append(iteration)
+            else:
+                print(f"Warning: iteration {iteration} is out of bounds, skipping.")
+        for iteration in tqdm(valid_iterations, desc="Processing specific questions"):
+            example = examples[iteration - 1]
+            result = process_example(example, iteration, paths, tokenizer)
+            results.append((iteration, result))
+    else:
+        # Set end_iteration to process all examples if not specified
+        if end_iteration is None or end_iteration > len(examples):
+            end_iteration = len(examples)
+            
+        # Validate iteration range
+        if start_iteration < 1:
+            start_iteration = 1
+        if start_iteration > end_iteration:
+            print(f"Error: start_iteration ({start_iteration}) > end_iteration ({end_iteration})")
+            return
         
-    # Validate iteration range
-    if start_iteration < 1:
-        start_iteration = 1
-    if start_iteration > end_iteration:
-        print(f"Error: start_iteration ({start_iteration}) > end_iteration ({end_iteration})")
-        return
+        # Adjust for 0-based indexing: enumerate iterations from start_iteration to end_iteration
+        for i in tqdm(range(start_iteration, end_iteration + 1), desc="Processing questions"):
+            example = examples[i - 1]
+            result = process_example(example, i, paths, tokenizer)
+            results.append((i, result))
     
-    # Adjust for 0-based indexing
-    examples_to_process = examples[start_iteration-1:end_iteration]
-    
-    # Open CSV file to write results
+    # Write results to CSV
     with open(paths['CSV_FILE'], mode='w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow([
-            'Prompt Tokens', 'Total Tokens', 'Completion Tokens',
+            'Iteration', 'Prompt Tokens', 'Total Tokens', 'Completion Tokens',
             'Reasoning Tokens', 'Non-Reasoning Tokens', 'Thought Count',
             'Thought Positions', 'Score'
         ])
-
-        # Process each example
-        for i, example in enumerate(tqdm(examples_to_process, desc="Processing questions")):
-            iteration = start_iteration + i
-            result = process_example(example, iteration, paths, tokenizer)
-            
+        for iteration, res in results:
             writer.writerow([
-                result['prompt_tokens'], 
-                result['total_tokens'], 
-                result['completion_tokens'],
-                result['reasoning_tokens'], 
-                result['non_reasoning_tokens'], 
-                result['thought_count'],
-                result['thought_positions'], 
-                result['score']
+                iteration,
+                res['prompt_tokens'], 
+                res['total_tokens'], 
+                res['completion_tokens'],
+                res['reasoning_tokens'], 
+                res['non_reasoning_tokens'], 
+                res['thought_count'],
+                res['thought_positions'], 
+                res['score']
             ])
 
 def main():
@@ -259,9 +277,20 @@ def main():
                         help='Starting iteration (1-indexed, default: 1)')
     parser.add_argument('--end', type=int, default=None,
                         help='Ending iteration (inclusive, default: process all examples)')
+    parser.add_argument('--iterations', type=str, default=None,
+                        help='Comma-separated list of specific iterations to run (overrides --start and --end)')
     
     args = parser.parse_args()
-    run_evaluation(args.start, args.end)
+    
+    if args.iterations:
+        try:
+            iterations = [int(x.strip()) for x in args.iterations.split(',') if x.strip()]
+        except ValueError:
+            print("Error: Unable to parse iterations. Provide comma-separated integers.")
+            return
+        run_evaluation(iterations=iterations)
+    else:
+        run_evaluation(args.start, args.end)
 
 if __name__ == "__main__":
     main()

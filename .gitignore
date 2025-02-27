@@ -204,5 +204,5 @@ actionlint
 shellcheck*/
 
 # content_output and kvcache_usages
-scratch/content_output/
-scratch/kvcache_usages/
+experiments/content_output/
+experiments/kvcache_usages/
