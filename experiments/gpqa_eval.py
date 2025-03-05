@@ -29,6 +29,7 @@ def load_data():
     """Load and prepare the dataset."""
     # Login using e.g. `huggingface-cli login` to access this dataset
     df = pd.read_csv("hf://datasets/Idavidrein/gpqa/gpqa_diamond.csv")
+    # df = pd.read_csv("/home/users/ntu/chong032/vllm/experiments/gpqa_diamond.csv")
     rng = random.Random(0)
     
     examples = [row.to_dict() for _, row in df.iterrows()]
@@ -141,19 +142,19 @@ def create_prompt(example):
 
     return prompt, choices, correct_answer
 
-def process_example(example, iteration, paths, tokenizer):
+def process_example(example, iteration, paths, tokenizer, model, ip_address):
     """Process a single example and return the results."""
     prompt, choices, correct_answer = create_prompt(example)
     
     data = {
-        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "model": model,
         "messages": [
             {"role": "user", "content": prompt}
         ]
     }
 
-    # URL and headers for the POST request
-    url = "http://localhost:8000/v1/chat/completions"
+    # Construct URL using the provided IP address
+    url = f"http://{ip_address}:8000/v1/chat/completions"
     headers = {
         "Content-Type": "application/json"
     }
@@ -207,7 +208,7 @@ def handle_kvcache_file(iteration, paths):
         shutil.copyfile(usage_file, new_usage_file)
         os.remove(usage_file)
 
-def run_evaluation(start_iteration=1, end_iteration=None, iterations=None):
+def run_evaluation(start_iteration=1, end_iteration=None, iterations=None, ip_address="localhost", model="deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"):
     """Run the evaluation process.
 
     If 'iterations' (a list of iteration numbers) is provided, only those examples are processed.
@@ -229,7 +230,7 @@ def run_evaluation(start_iteration=1, end_iteration=None, iterations=None):
                 print(f"Warning: iteration {iteration} is out of bounds, skipping.")
         for iteration in tqdm(valid_iterations, desc="Processing specific questions"):
             example = examples[iteration - 1]
-            result = process_example(example, iteration, paths, tokenizer)
+            result = process_example(example, iteration, paths, tokenizer, model, ip_address)
             results.append((iteration, result))
     else:
         # Set end_iteration to process all examples if not specified
@@ -246,7 +247,7 @@ def run_evaluation(start_iteration=1, end_iteration=None, iterations=None):
         # Adjust for 0-based indexing: enumerate iterations from start_iteration to end_iteration
         for i in tqdm(range(start_iteration, end_iteration + 1), desc="Processing questions"):
             example = examples[i - 1]
-            result = process_example(example, i, paths, tokenizer)
+            result = process_example(example, i, paths, tokenizer, model, ip_address)
             results.append((i, result))
     
     # Write results to CSV
@@ -279,6 +280,10 @@ def main():
                         help='Ending iteration (inclusive, default: process all examples)')
     parser.add_argument('--iterations', type=str, default=None,
                         help='Comma-separated list of specific iterations to run (overrides --start and --end)')
+    parser.add_argument('--ip', type=str, default="localhost",
+                        help='IP address of the server for chat completions endpoint (default: localhost)')
+    parser.add_argument('--model', type=str, default="deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
+                        help='Model identifier for the chat completions (default: deepseek-ai/DeepSeek-R1-Distill-Qwen-14B)')
     
     args = parser.parse_args()
     
@@ -288,9 +293,9 @@ def main():
         except ValueError:
             print("Error: Unable to parse iterations. Provide comma-separated integers.")
             return
-        run_evaluation(iterations=iterations)
+        run_evaluation(iterations=iterations, ip_address=args.ip, model=args.model)
     else:
-        run_evaluation(args.start, args.end)
+        run_evaluation(args.start, args.end, ip_address=args.ip, model=args.model)
 
 if __name__ == "__main__":
     main()
