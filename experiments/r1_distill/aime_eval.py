@@ -8,12 +8,13 @@ from tqdm import tqdm
 import random
 import re
 import argparse
+from datasets import load_dataset
 
 def setup_directories():
     """Set up necessary directories and return path constants."""
     HOME = os.path.expanduser('~')
-    OUTPUT_DIR = f"{HOME}/vllm/experiments/content_output"
-    KVCACHE_USAGES_DIR = f"{HOME}/vllm/experiments/kvcache_usages"
+    OUTPUT_DIR = f"{HOME}/vllm/experiments/content_output_AIME"
+    KVCACHE_USAGES_DIR = f"{HOME}/vllm/experiments/kvcache_usages_AIME"
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     os.makedirs(KVCACHE_USAGES_DIR, exist_ok=True)
     
@@ -21,26 +22,21 @@ def setup_directories():
         'HOME': HOME,
         'OUTPUT_DIR': OUTPUT_DIR,
         'KVCACHE_USAGES_DIR': KVCACHE_USAGES_DIR,
-        'USAGE_FILE': f"{KVCACHE_USAGES_DIR}/kvcache_usage.csv",
-        'CSV_FILE': f"{HOME}/vllm/experiments/token_counts.csv"
+        'USAGE_FILE': f"{HOME}/vllm/experiments/kvcache_usages/kvcache_usage.csv",
+        'CSV_FILE': f"{HOME}/vllm/experiments/token_counts_AIME.csv"
     }
 
 def load_data():
-    """Load and prepare the dataset."""
-    # Login using e.g. `huggingface-cli login` to access this dataset
-    df = pd.read_csv("hf://datasets/Idavidrein/gpqa/gpqa_diamond.csv")
-    # df = pd.read_csv("/home/users/ntu/chong032/vllm/experiments/gpqa_diamond.csv")
-    rng = random.Random(0)
-    
-    examples = [row.to_dict() for _, row in df.iterrows()]
-    # Attach a random permutation (0..3) to each example
-    examples = [example | {"permutation": rng.sample(range(4), 4)} for example in examples]
-    
+    """Load and prepare the AIME_2024 dataset."""
+    df = load_dataset("Maxwell-Jia/AIME_2024", split="train")
+    # df = pd.read_parquet("hf://datasets/Maxwell-Jia/AIME_2024/aime_2024_problems.parquet")  #Old, incorrect way
+    examples = [row for row in df]
     return examples
+
 
 def setup_tokenizer(home_dir):
     """Initialize and return the tokenizer."""
-    chat_tokenizer_dir = f"{home_dir}/vllm/experiments/qwen2.5_tokenizer"
+    chat_tokenizer_dir = f"{home_dir}/vllm/experiments/deepseek_tokenizer"  # Or any other suitable tokenizer
     return transformers.AutoTokenizer.from_pretrained(
         chat_tokenizer_dir, trust_remote_code=True
     )
@@ -48,18 +44,16 @@ def setup_tokenizer(home_dir):
 def extract_reasoning_text(content):
     """
     Extract the reasoning section from the content.
-    Returns the reasoning text or None if not found.
+    
+    Since the reasoning text no longer starts with a <think> tag,
+    start extraction from the beginning until the end tag </think>.
+    If the end tag is missing, return the entire content.
     """
-    start_tag = "<think>"
     end_tag = "</think>"
-    start_index = content.find(start_tag)
-    if start_index == -1:
-        return None
-    start_index += len(start_tag)
-    end_index = content.find(end_tag, start_index)
+    end_index = content.find(end_tag)
     if end_index == -1:
-        return None
-    return content[start_index:end_index]
+        return content
+    return content[:end_index]
 
 def count_reasoning_tokens(content, tokenizer):
     """Count the number of tokens in the reasoning section."""
@@ -84,7 +78,7 @@ def count_thoughts_positions(content, tokenizer):
     offsets = tokenized['offset_mapping']
 
     thought_positions = []
-    target_phrases = ["alternative", "Alternative", "Another", "But another"]
+    target_phrases = ["alternative", "Alternative", "Another", "But another", "Wait", "Oh wait"]
     for phrase in target_phrases:
         search_start = 0
         while True:
@@ -115,36 +109,16 @@ def count_non_reasoning_tokens(content, tokenizer):
 
 def create_prompt(example):
     """Create a prompt from the example."""
-    # Randomly permute the four options
-    choices = [
-        example["Correct Answer"],
-        example["Incorrect Answer 1"],
-        example["Incorrect Answer 2"],
-        example["Incorrect Answer 3"],
-    ]
-    choices = [choices[idx] for idx in example["permutation"]]
-
-    # Identify which choice is correct
-    correct_index = choices.index(example["Correct Answer"])
-    correct_answer = "ABCD"[correct_index]
-
-    # Build the multiple-choice prompt
     prompt = f"""
-    Answer the following multiple choice question. 
-    The last line of your response should be of the format: 
-    'Answer: $LETTER'{example['Question']}
-    
-    A) {choices[0]}
-    B) {choices[1]}
-    C) {choices[2]}
-    D) {choices[3]}
+    Answer the following question.
+    {example['Problem']}
     """.strip()
 
-    return prompt, choices, correct_answer
+    return prompt, example["Answer"]
 
 def process_example(example, iteration, paths, tokenizer, model, ip_address):
     """Process a single example and return the results."""
-    prompt, choices, correct_answer = create_prompt(example)
+    prompt, correct_answer = create_prompt(example)
     
     data = {
         "model": model,
@@ -162,12 +136,12 @@ def process_example(example, iteration, paths, tokenizer, model, ip_address):
     response = requests.post(url, headers=headers, json=data).json()
     content = response["choices"][0]["message"]["content"]
 
-    # Write question, choices, and content to file
+    # Write question and content to file
     with open(f"{paths['OUTPUT_DIR']}/question_{iteration}.txt", "w") as text_file:
-        text_file.write(f"Question: {example['Question']}\n")
-        text_file.write(f"A) {choices[0]}\nB) {choices[1]}\nC) {choices[2]}\nD) {choices[3]}\n\n")
+        text_file.write(f"Question: {example['Problem']}\n\n")
         text_file.write("Assistant Response:\n")
         text_file.write(content)
+        text_file.write(f"\n\nCorrect Answer: {correct_answer}")
 
     # Extract token usage information
     usage = response['usage']
@@ -175,11 +149,9 @@ def process_example(example, iteration, paths, tokenizer, model, ip_address):
     total_tokens = usage['total_tokens']
     completion_tokens = usage['completion_tokens']
 
-    # Determine score
-    ANSWER_PATTERN_MULTICHOICE = r"(?i)Answer[ \t]*:[ \t]*\$?([A-D])\$?"
-    match = re.search(ANSWER_PATTERN_MULTICHOICE, content)
-    extracted_answer = match.group(1) if match else None
-    score = 1 if extracted_answer == correct_answer else 0
+    # Determine score (This part might need adjustments based on how you want to evaluate)
+    #Simple string matching, with some flexibility
+    score = 1 if str(correct_answer).strip().lower() in content.strip().lower() else 0
 
     # Count tokens
     reasoning_tokens = count_reasoning_tokens(content, tokenizer)
@@ -216,6 +188,7 @@ def run_evaluation(start_iteration=1, end_iteration=None, iterations=None, ip_ad
     """
     paths = setup_directories()
     examples = load_data()
+    print(f"Loaded {len(examples)} examples.")
     tokenizer = setup_tokenizer(paths['HOME'])
     
     results = []
@@ -273,7 +246,7 @@ def run_evaluation(start_iteration=1, end_iteration=None, iterations=None, ip_ad
 
 def main():
     """Main function to parse arguments and run the evaluation."""
-    parser = argparse.ArgumentParser(description='Evaluate LLM performance on GPQA dataset.')
+    parser = argparse.ArgumentParser(description='Evaluate LLM performance on AIME_2024 dataset.')
     parser.add_argument('--start', type=int, default=1, 
                         help='Starting iteration (1-indexed, default: 1)')
     parser.add_argument('--end', type=int, default=None,
