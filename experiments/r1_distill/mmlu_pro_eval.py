@@ -32,7 +32,8 @@ def load_data(category=None):
         df = df.filter(lambda example: example["category"] == category)
 
     examples = [row for row in df]
-    examples = [example | {"permutation": rng.sample(range(10), 10)} for example in examples]
+    #  Use min(len(options), 10) for sample size
+    examples = [example | {"permutation": rng.sample(range(len(example['options'])), min(len(example['options']), 10))} for example in examples]
 
     return examples
 
@@ -45,27 +46,22 @@ def setup_tokenizer(chat_tokenizer_dir):
 def create_prompt(example):
     """Create a prompt from the MMLU-Pro example."""
     choices = example['options']
+    num_choices = len(choices)
     choices = [choices[i] for i in example["permutation"]]
-    correct_index = example["permutation"].index(example['answer'])
+    correct_index = example["permutation"].index(example['answer_index'])
     correct_answer = "ABCDEFGHIJ"[correct_index]
 
     prompt = f"""
     Answer the following multiple choice question. 
     The last line of your response should be of the format: 
     'Answer: $LETTER'{example['question']}
+    """
 
-    A) {choices[0]}
-    B) {choices[1]}
-    C) {choices[2]}
-    D) {choices[3]}
-    E) {choices[4]}
-    F) {choices[5]}
-    G) {choices[6]}
-    H) {choices[7]}
-    I) {choices[8]}
-    J) {choices[9]}
-    """.strip()
+    # Dynamically create the multiple-choice options
+    for i in range(num_choices):
+        prompt += f"\n {chr(65 + i)}) {choices[i]}" # Use chr(65 + i) for A, B, C, etc.
 
+    prompt = prompt.strip()
     return prompt, choices, correct_answer
 
 def make_api_request(prompt, ip_address, model):
@@ -222,10 +218,10 @@ def run_evaluation(start_iteration=1, end_iteration=None, iterations=None, ip_ad
       iterations_to_process = range(start_iteration, end_iteration + 1)
 
     for i in tqdm(iterations_to_process, desc="Processing questions"):
-    example = examples[i-1]
-    result = process_example(example, i, output_dir, kvcache_usages_dir, usage_file, tokenizer, model, ip_address)
-    if result:
-        results.append((i, result))
+        example = examples[i-1]
+        result = process_example(example, i, output_dir, kvcache_usages_dir, usage_file, tokenizer, model, ip_address)
+        if result:
+            results.append((i, result))
     
     # Write results using pandas
     df = pd.DataFrame([res[1] for res in results], index=[res[0] for res in results])
@@ -248,9 +244,10 @@ def main():
     if args.iterations:
         try:
             iterations = [int(x.strip()) for x in args.iterations.split(',') if x.strip()]
-            run_evaluation(iterations=iterations, ip_address=args.ip, model=args.model, category=args.category)
         except ValueError:
             print("Error: Invalid iterations. Provide comma-separated integers.")
+            return
+        run_evaluation(iterations=iterations, ip_address=args.ip, model=args.model, category=args.category)
     else:
         run_evaluation(start_iteration=args.start, end_iteration=args.end, ip_address=args.ip, model=args.model, category=args.category)
 
