@@ -1496,15 +1496,18 @@ class LLMEngine:
                 for scheduler in self.scheduler)
             gpu_cache_usage_perc = 1.0 - (num_free_gpu / num_total_gpu)
         if gpu_cache_usage_perc > 0.0:
-            path = os.path.expanduser("~/scratch/kvcache_usage.csv")
-            if not os.path.exists(path):
-                with open(path, "w", newline="") as csvfile:
+            try:
+                path = os.path.expanduser("~/scratch/kvcache_usage.csv")
+                file_exists = os.path.exists(path)
+                # Use 'a' mode for appending, 'w' only if file doesn't exist (or handle header writing explicitly)
+                with open(path, "a", newline="") as csvfile:
                     writer = csv.writer(csvfile)
-                    writer.writerow(["timestamp", 
-                                    "gpu_cache_usage_perc"])
-            with open(path, "a", newline="") as csvfile:
-                writer = csv.writer(csvfile)
-                writer.writerow([time.time(), gpu_cache_usage_perc])
+                    # Write header only if file did not exist before opening
+                    if not file_exists or os.path.getsize(path) == 0:
+                         writer.writerow(["timestamp", "gpu_cache_usage_perc"])
+                    writer.writerow([time.time(), gpu_cache_usage_perc])
+            except Exception as e:
+                 logger.error(f"Failed to write KV cache usage to {path}: {e}")
 
         return ctx.request_outputs
 
