@@ -1478,6 +1478,34 @@ class LLMEngine:
             logger.debug("Stopping remote worker execution loop.")
             self.model_executor.stop_remote_worker_execution_loop()
 
+        import csv, os, time
+
+        # KV Cache Usage in %
+        num_total_gpu = self.cache_config.num_gpu_blocks
+        gpu_cache_usage_perc = 0.
+        if num_total_gpu:
+            num_free_gpu = sum(
+                scheduler.block_manager.get_num_free_gpu_blocks()
+                for scheduler in self.scheduler)
+            gpu_cache_usage_perc = 1.0 - (num_free_gpu / num_total_gpu)
+        if gpu_cache_usage_perc > 0.0:
+            try:
+                # Get the CSV file path from an environment variable, with a default fallback
+                default_path = "~/scratch/kvcache_usage.csv"
+                path = os.getenv("KVC_USAGE_FILE", default_path)
+                path = os.path.expanduser(path)  # Expand '~' for user directories
+
+                file_exists = os.path.exists(path)
+                # Use 'a' mode for appending, 'w' only if file doesn't exist (or handle header writing explicitly)
+                with open(path, "a", newline="") as csvfile:
+                    writer = csv.writer(csvfile)
+                    # Write header only if the file did not exist before opening
+                    if not file_exists or os.path.getsize(path) == 0:
+                        writer.writerow(["timestamp", "gpu_cache_usage_perc"])
+                    writer.writerow([time.time(), gpu_cache_usage_perc])
+            except Exception as e:
+                logger.error(f"Failed to write KV cache usage to {path}: {e}")
+                
         return ctx.request_outputs
 
     def _abort_and_cache_schedule(
