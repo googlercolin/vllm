@@ -32,6 +32,8 @@ from vllm.v1.metrics.loggers import (PrometheusStatLogger, StatLoggerBase,
 from vllm.v1.metrics.reader import Metric, get_metrics_snapshot
 from vllm.v1.metrics.stats import IterationStats
 
+import csv, os, time
+
 logger = init_logger(__name__)
 
 _R = TypeVar("_R", default=Any)
@@ -245,6 +247,28 @@ class LLMEngine:
             assert outputs.scheduler_stats is not None
             self.stat_logger.record(scheduler_stats=outputs.scheduler_stats,
                                     iteration_stats=iteration_stats)
+
+        # KV Cache Usage in %
+        sched_stats = self.scheduler.make_stats()
+        gpu_cache_usage_perc = sched_stats.gpu_cache_usage
+        
+        if gpu_cache_usage_perc > 0.0:
+            try:
+                # Get the CSV file path from an environment variable, with a default fallback
+                default_path = "~/scratch/kvcache_usage.csv"
+                path = os.getenv("KVC_USAGE_FILE", default_path)
+                path = os.path.expanduser(path)  # Expand '~' for user directories
+
+                file_exists = os.path.exists(path)
+                # Use 'a' mode for appending, 'w' only if file doesn't exist (or handle header writing explicitly)
+                with open(path, "a", newline="") as csvfile:
+                    writer = csv.writer(csvfile)
+                    # Write header only if the file did not exist before opening
+                    if not file_exists or os.path.getsize(path) == 0:
+                        writer.writerow(["timestamp", "gpu_cache_usage_perc"])
+                    writer.writerow([time.time(), gpu_cache_usage_perc])
+            except Exception as e:
+                logger.error(f"Failed to write KV cache usage to {path}: {e}")
 
         return processed_outputs.request_outputs
 
