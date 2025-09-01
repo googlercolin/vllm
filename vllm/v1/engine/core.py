@@ -49,6 +49,8 @@ from vllm.v1.serial_utils import MsgpackDecoder, MsgpackEncoder
 from vllm.v1.structured_output import StructuredOutputManager
 from vllm.version import __version__ as VLLM_VERSION
 
+import csv, os, time
+
 logger = init_logger(__name__)
 
 POLLING_TIMEOUT_S = 2.5
@@ -290,6 +292,28 @@ class EngineCore:
             scheduler_output)
         engine_core_outputs = self.scheduler.update_from_output(
             scheduler_output, model_output)  # type: ignore
+
+        # KV Cache Usage in %
+        sched_stats = self.scheduler.make_stats()
+        gpu_cache_usage_perc = sched_stats.gpu_cache_usage
+        
+        if gpu_cache_usage_perc > 0.0:
+            try:
+                # Get the CSV file path from an environment variable, with a default fallback
+                default_path = "~/scratch/kvcache_usage.csv"
+                path = os.getenv("KVC_USAGE_FILE", default_path)
+                path = os.path.expanduser(path)  # Expand '~' for user directories
+
+                file_exists = os.path.exists(path)
+                # Use 'a' mode for appending, 'w' only if file doesn't exist (or handle header writing explicitly)
+                with open(path, "a", newline="") as csvfile:
+                    writer = csv.writer(csvfile)
+                    # Write header only if the file did not exist before opening
+                    if not file_exists or os.path.getsize(path) == 0:
+                        writer.writerow(["timestamp", "gpu_cache_usage_perc"])
+                    writer.writerow([time.time(), gpu_cache_usage_perc])
+            except Exception as e:
+                logger.error(f"Failed to write KV cache usage to {path}: {e}")
 
         return (engine_core_outputs,
                 scheduler_output.total_num_scheduled_tokens > 0)
