@@ -295,7 +295,7 @@ class EngineCore:
 
         # KV Cache Usage in %
         sched_stats = self.scheduler.make_stats()
-        gpu_cache_usage_perc = sched_stats.gpu_cache_usage
+        gpu_cache_usage_perc = sched_stats.kv_cache_usage
         
         if gpu_cache_usage_perc > 0.0:
             try:
